@@ -27,6 +27,7 @@ if __name__ == '__main__':
     f = open("../alert.txt", "w")
     f.write("False")
     f.close()
+
     run()
 
 

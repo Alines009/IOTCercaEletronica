@@ -22,7 +22,6 @@ def help_command(update: Update, context: CallbackContext) -> None:
 
 def alarm(context: CallbackContext) -> None:
     """Send the alarm message."""
-
     try:
         f = open("../alert.txt", "r")
         sensor_data = f.read().split("#")
