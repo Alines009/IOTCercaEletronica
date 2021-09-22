@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Cerca Eletrônica</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styleMap.css' %}" />
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script type=text/javascript>
+      {% if msg %}
+        function initMap() {
+          const myLatlng = { lat: {{ latitude }}, lng: {{ longitude }} };
+
+          const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 13,
+            center: myLatlng,
+          });
+
+          infoWindow = new google.maps.InfoWindow();
+          infoWindow.setPosition(myLatlng);
+          {% if status_cerca %}
+            infoWindow.setContent("Seu veículo se encontra nesta posição. Fora da cerca.");
+          {% else %}
+            infoWindow.setContent("Seu veículo se encontra nesta posição. Dentro da cerca.");
+          {% endif %}
+          infoWindow.open(map);
+        }
+      {% endif %}
+    </script>
+  </head>
+  <body>
+    {% if msg %}
+      <div id="map"></div>
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+      <script
+        src="https://maps.googleapis.com/maps/api/js?key=TOKEN_GOOGLE&callback=initMap&libraries=&v=weekly"
+        async
+      ></script>
+    {% else %}
+      <h1>Ainda não recebemos a localização do veículo... :(<br>Tente novamente mais tarde.</h1>
+    {% endif %}
+  </body>
+</html>
