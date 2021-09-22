@@ -1,4 +1,4 @@
-# IOTcercaEletronica
+# IOTCercaEletronica
  Aplicação IoT que possui a finalidade de monitorar se um veículo está distante da sua rota principal. Caso isso aconteça, o usuário é notificado através de uma mensagem  enviada por um bot no Telegram. 
 
 
